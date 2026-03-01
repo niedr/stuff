@@ -1,9 +1,9 @@
 ### This is a collection of good looking plugins which I want to check out, for all kind of environments.
 #### bash
-[ ][bat][bat_url]--> better cat, syntax highlighting etc.
-[x][zoxide][zoxide_url] --> smart cd command
-[ ][eza][eza_url] --> better looking ls command
-[ ][Warp][warp_url] --> Agent focused terminal 
+- [ ][bat][bat_url]--> better cat, syntax highlighting etc.
+- [x][zoxide][zoxide_url] --> smart cd command
+- [ ][eza][eza_url] --> better looking ls command
+- [ ][Warp][warp_url] --> Agent focused terminal 
 
 
 ---
