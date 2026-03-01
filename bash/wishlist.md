@@ -5,6 +5,10 @@
 - [x] [zoxide][zoxide_url] --> smart cd command
 - [ ] [eza][eza_url] --> better looking ls command
 - [ ] [Warp][warp_url] --> Agent focused terminal 
+- [ ] sed --> programmatic file editor
+- [ ] ripgrep --> faster grep alternative
+- [ ] tee command
+
 
 
 [bat_url]: https://github.com/sharkdp/bat
