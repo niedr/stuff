@@ -8,6 +8,7 @@
 - [ ] sed --> programmatic file editor
 - [ ] ripgrep --> faster grep alternative
 - [ ] tee command
+- [x] [act][act_url] --> lets me simulate github actions locally, dont need to commit/push everytime.
 
 
 
@@ -15,4 +16,5 @@
 [eza_url]: https://eza.rocks/
 [zoxide_url]: https://github.com/ajeetdsouza/zoxide
 [Warp_url]: https://github.com/warpdotdev
+[act_url]: https://github.com/nektos/act
 
