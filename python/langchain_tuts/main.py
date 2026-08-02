@@ -1,6 +1,7 @@
 from langchain.chat_models import init_chat_model
 from deepagents import create_deep_agent
 from langchain.tools import tool
+from langchain.tools import ToolException
 
 import requests
 import argparse
@@ -15,14 +16,13 @@ SYSTEM_PROMPT = """ You are a general agent for multiple tasks. Currently you ar
 @tool
 def get_stoicism_quote() -> dict:
     """ Function to request stoic quote from api"""
-    url = 'https://stoic.tekloon.net/stoic-quote'
-    resp = requests.get(url, timeout=20)
-    
-    if resp.status_code == 200:
-        data = resp.json()
-        return data
-    else:
-        return  {"error":f"status {resp.status_code}"}
+    try:
+        url = 'https://stoic.tekloon.net/stoic-quote'
+        resp = requests.get(url, timeout=20)
+        resp.raise_for_status()
+        return resp.json()
+    except requests.RequestException as e:
+        raise ToolException(f"API request failed {e}")
 
 
 def main():
