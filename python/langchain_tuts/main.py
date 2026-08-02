@@ -3,6 +3,7 @@ from deepagents import create_deep_agent
 from langchain.tools import tool
 
 import requests
+import argparse
 
 SYSTEM_PROMPT = """ You are a general agent for multiple tasks. Currently you are able to do:
     - `get_stoicism_quote`: requests an api for stoic content
@@ -25,6 +26,11 @@ def get_stoicism_quote() -> dict:
 
 
 def main():
+
+    parser = argparse.ArgumentParser(description="Run the local agent with a custom prompt")
+    parser.add_argument("Prompt", help="write your prompt here", default="Please think of a short joke")
+    args = parser.parse_args()
+
     local_model = init_chat_model("Qwythos-9B-Claude-Mythos-5-1M-MTP-Q6_K.gguf", 
                             model_provider="openai", 
                             base_url="http://localhost:8080/v1",
@@ -36,7 +42,7 @@ def main():
             system_prompt=SYSTEM_PROMPT
             )
 
-    content = "Can you please give me a stoic quote"
+    content = args.Prompt
 
 
     deep_agent_result = deep_agent.invoke(
