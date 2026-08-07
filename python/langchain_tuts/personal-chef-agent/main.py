@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from pathlib import Path
+import argparse
 
 from langchain.tools import tool
 from langchain.agents import create_agent
@@ -37,7 +38,16 @@ def web_search(query: str) -> Dict[str, Any]:
 
 
 def main():
+    # setup parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--prompt",
+                        type=str)
+    args = parser.parse_args()
+
+    # setup environment
     env_setup()
+
+    # setup agent
     agent = create_agent(
             model="gpt-5-nano",
             tools=[web_search],
@@ -45,12 +55,18 @@ def main():
             checkpointer=InMemorySaver()
             )
     
-    config = {"configurable": {"thread_id": "1"}}
-    
-    question = HumanMessage(content=[
-        {"type": "text", "text": "What can i cook from chicken, rice and curry ?"},
-        ]
-        )
+    config = {"configurable": {"thread_id": "1"}} 
+
+    if args.prompt is None:
+        question = HumanMessage(content=[
+            {"type": "text", "text": "What can i cook from chicken, rice and curry ?"},
+            ]
+            )
+    else:
+        question = HumanMessage(content=[
+            {"type": "text", "text": args.prompt},
+            ]
+            )
 
     response = agent.invoke(
             {"messages": [question]},
