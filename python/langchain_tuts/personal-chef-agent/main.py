@@ -41,7 +41,9 @@ def main():
     # setup parser
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--prompt",
-                        type=str)
+                        type=str, help="Insert specific prompt")
+    parser.add_argument("-i", "--image", type=pathlib.Path, help="Path to an image")
+    #TODO: image path handling yet to implement
     args = parser.parse_args()
 
     # setup environment
@@ -57,7 +59,7 @@ def main():
     
     config = {"configurable": {"thread_id": "1"}} 
 
-    if args.prompt is None:
+    if args.prompt is None or not args.prompt.strip():
         question = HumanMessage(content=[
             {"type": "text", "text": "What can i cook from chicken, rice and curry ?"},
             ]
